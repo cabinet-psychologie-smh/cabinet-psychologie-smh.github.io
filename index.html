@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruben & Wanglaise - RW2025</title>
+    <link rel="icon" type="image/png" href="photos/RW-logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B5A2B',
+                        secondary: '#F8F1E5',
+                        accent: '#D4A76A',
+                        gold: '#FFD700',
+                        rose: '#EEE8AA',
+                    },
+                    fontFamily: {
+                        script: ['"serif"', 'serif'],
+                        heading: ['"Playfair Display"', 'serif'],
+                        body: ['"Open Sans"', 'sans-serif'],
+                        logo: ['"Playfair Display"', 'serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-in-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'float': 'float 3s ease-in-out infinite',
+                        'sparkle': 'sparkle 2s linear infinite',
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Open+Sans:wght@300;400;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        
+        .hero-bg {
+            background-image: linear-gradient(135deg, rgba(139, 90, 43, 0.3), rgba(212, 167, 106, 0.3)), url('photos/accueil_bg_1.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .gallery-item {
+            transition: all 0.5s ease;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05) rotate(1deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255,215,0,0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+        
+        .verse-bg {
+            background-image: linear-gradient(135deg, rgba(139, 90, 43, 0.9), rgba(212, 167, 106, 0.8)), url('https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .verse-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, transparent 20%, rgba(139, 90, 43, 0.1) 80%);
+        }
+        
+        .countdown-box {
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: gold;
+            border-radius: 50%;
+            animation: sparkle 2s linear infinite;
+        }
+        
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139, 90, 43, 0.1);
+        }
+        
+        .form-input {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .form-input:focus {
+            border-color: #D4A76A;
+            box-shadow: 0 0 0 3px rgba(212, 167, 106, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #8B5A2B, #D4A76A);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(139, 90, 43, 0.3);
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+    </style>
+</head>
+<body class="font-body bg-gradient-to-br from-secondary via-rose to-secondary text-gray-700">
+    <!-- Language Switcher -->
+    <div class="fixed top-4 right-4 z-50">
+        <div class="glass-card rounded-full px-4 py-2">
+            <button onclick="switchLanguage('fr')" id="lang-fr" class="px-3 py-1 rounded-full bg-primary text-white text-sm">FR</button>
+            <button onclick="switchLanguage('en')" id="lang-en" class="px-3 py-1 rounded-full text-primary text-sm ml-2">EN</button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-glass sticky top-0 z-40 shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <img src="photos/logo_2_psycho.png" alt="RW Logo" class="h-12 w-12 object-contain">
+                    <a href="#" class="text-4xl font-logo text-primary "> Cabinet de Psychologie SMH </a>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="hover:text-accent transition-all duration-300 font-medium" data-fr="Accueil" data-en="Home">Accueil</a>
+                    <a href="#About us" class="hover:text-accent transition-all duration-300 font-medium" data-fr="Qui sommes-nous" data-en="About us">Qui sommes-nous</a>
+                    <a href="#Services" class="hover:text-accent transition-all duration-300 font-medium" data-fr="Services offerts" data-en="Services">Services offerts</a>
+                    <a href="#gallery" class="hover:text-accent transition-all duration-300 font-medium" data-fr="Galerie" data-en="Gallery">Galerie</a>
+                    <a href="#Rendez-vous" class="hover:text-accent transition-all duration-300 font-medium" data-fr="Rendez-vous" data-en="Appointement">Rendez-vous</a>
+                </div>
+                <button class="md:hidden text-primary" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="md:hidden hidden nav-glass py-4 px-4 absolute w-full z-30" id="mobileMenu">
+        <div class="flex flex-col space-y-4">
+            <a href="#home" class="hover:text-accent transition font-medium" data-fr="Accueil" data-en="Home">Accueil</a>
+            <a href="#About us ?" class="hover:text-accent transition font-medium" data-fr="Qui sommes-nous?" data-en="Our Story">Qui sommes-nous?</a>
+            <a href="#details" class="hover:text-accent transition font-medium" data-fr="Détails" data-en="Wedding Details">Détails</a>
+            <a href="#gallery" class="hover:text-accent transition font-medium" data-fr="Galerie" data-en="Gallery">Galerie</a>
+            <a href="#Rendez-vous" class="hover:text-accent transition font-medium" data-fr="Rendez-vous" data-en="Appointement">Rendez-vous</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center text-white relative overflow-hidden">
+        <div class="sparkle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+        <div class="sparkle" style="top: 30%; right: 15%; animation-delay: 1s;"></div>
+        <div class="sparkle" style="bottom: 40%; left: 20%; animation-delay: 0.5s;"></div>
+        <div class="sparkle" style="top: 60%; right: 30%; animation-delay: 1.5s;"></div>
+        
+        <div class="text-center px-4 animate-fade-in">
+            <h1 class="font-script text-5xl md:text-5xl mb-4 animate-float" >Consultation-Conseil-Expertise</h1>
+			<h1 class="font-script text-5xl md:text-5xl mb-4 animate-float"> en Psychologie clinique & Psychologie légale </h1>
+            <h1 class="font-heading text-2xl md:text-3xl mb-6 animate-slide-up" style="color:#B22222" data-fr="Enfants-Adolescents-Adultes" data-en="Are Getting Married">Enfants-Adolescents-Adultes</h1>
+            <!-- <p class="text-xl mb-8 animate-slide-up" data-fr="19 Juillet 2025 • À l'Église La Foi Apostolique Colebay, St. Martin" data-en="July 19, 2025 • At Église La Foi Apostolique Colebay, St. Maarten">19 Juillet 2025 • À l'Église La Foi Apostolique Colebay, St. Martin</p>-->
+            
+            <!-- Countdown Timer -->
+            <!--<div class="mb-8 animate-slide-up">
+                <div class="flex justify-center space-x-4 mb-4">
+                    <div class="countdown-box rounded-lg p-4 text-center">
+                        <div id="days" class="text-3xl font-bold">0</div>
+                        <div class="text-sm" data-fr="Jours" data-en="Days">Jours</div>
+                    </div>
+                    <div class="countdown-box rounded-lg p-4 text-center">
+                        <div id="hours" class="text-3xl font-bold">0</div>
+                        <div class="text-sm" data-fr="Heures" data-en="Hours">Heures</div>
+                    </div>
+                    <div class="countdown-box rounded-lg p-4 text-center">
+                        <div id="minutes" class="text-3xl font-bold">0</div>
+                        <div class="text-sm" data-fr="Minutes" data-en="Minutes">Minutes</div>
+                    </div>
+                    <div class="countdown-box rounded-lg p-4 text-center">
+                        <div id="seconds" class="text-3xl font-bold">0</div>
+                        <div class="text-sm" data-fr="Secondes" data-en="Seconds">Secondes</div>
+                    </div>
+                </div>
+            </div> -->
+            
+            <div class="flex justify-center space-x-4 animate-slide-up">
+                <a href="#Rendez-vous" class="btn-primary text-white px-8 py-4 rounded-full transition font-semibold" data-fr="Rendez-vous" data-en="Appointement">Rendez-vous</a>
+                <a href="Carte_invitation1.pdf" class="glass-card hover:bg-white hover:text-gray-800 text-white px-8 py-4 rounded-full transition font-semibold" target="_blank" data-fr="Voir nos tarifs" data-en="View our rates">Voir nos tarifs</a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-0 right-0 text-center">
+            <a href="#our-story" class="text-white animate-bounce inline-block">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Our Story Section = QUI SOMMES-NOUS -->
+    <section id="our-story" class="py-20 px-4">
+        <div class="container mx-auto">
+            <h2 class="font-heading text-4xl md:text-5xl text-center mb-16 text-primary animate-slide-up" data-fr="Notre Histoire" data-en="Our Story">Notre Histoire</h2>
+            
+            <div class="flex flex-col md:flex-row items-center mb-16 animate-slide-up">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h3 class="font-heading text-3xl mb-6 text-accent" data-fr="Comment nous nous sommes rencontrés" data-en="How We Met">Comment nous nous sommes rencontrés</h3>
+                    <div class="prose text-lg leading-relaxed">
+                        <p class="mb-4" data-fr="Dieu et les mathématiques ont été le fil conducteur de leur rencontre. Ruben, titulaire d’un doctorat, et Wanglaise, étudiante en licence, se découvrent dans le silence de la bibliothèque de Chasseneuil. Sans le savoir, ils venaient d’ouvrir un chapitre inattendu de leur vie.
+" data-en="God and Mathematics were the common thread that brought them together. Ruben, who holds a doctorate, and Wanglaise, a bachelor’s student, first met in the quiet hush of the Chasseneuil university library. Little did they know, they were opening an unexpected chapter in their lives.">Dieu et Les mathématiques ont été le fil conducteur de leur rencontre. Ruben, titulaire d’un doctorat, et Wanglaise, étudiante en licence, se découvrent dans le silence de la bibliothèque de Chasseneuil. Sans le savoir, ils venaient d’ouvrir un chapitre inattendu de leur vie.</p>
+                        <p data-fr="Leurs chemins se croisent de nouveau, cette fois au détour d’un rayon de supermarché. De simples échanges naissent des conversations régulières, puis un premier repas au KFC qui scelle une complicité grandissante. Petit à petit, leurs discussions dépassent les mathématiques pour explorer leur foi commune et leurs passions." data-en="Their paths crossed again, this time in a supermarket aisle. What began as casual conversations soon turned into regular chats and a first meal at KFC that sealed their growing bond. Slowly, their discussions moved beyond math to explore their shared Christian faith and passions.">Leurs chemins se croisent de nouveau, cette fois au détour d’un rayon de supermarché. De simples échanges naissent des conversations régulières, puis un premier repas au KFC qui scelle une complicité grandissante. Petit à petit, leurs discussions dépassent les mathématiques pour explorer leur foi commune et leurs passions.</p>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="glass-card rounded-2xl p-2">
+                        <img src="photos/Poitiers.jpg" alt="Couple meeting" class="rounded-xl shadow-2xl w-full h-auto">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row-reverse items-center animate-slide-up">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pl-8">
+                    <h3 class="font-heading text-3xl mb-6 text-accent" data-fr="La Demande" data-en="The Proposal">La Demande</h3>
+                    <div class="prose text-lg leading-relaxed">
+                        <p class="mb-4" data-fr="Malgré les séparations et la distance – Ruben part en Haïti, puis s’installe à Metz pour son doctorat, tandis que Wanglaise termine sa licence à Poitiers – leur lien ne faiblit pas. Pendant le confinement, leurs échanges se font plus intimes. En août 2020, Ruben dévoile enfin ses sentiments, avec une lettre et des chansons qu’il compose pour Wanglaise." data-en="Despite separations and distance—Ruben traveled to Haiti and later moved to Metz to start his doctorate, while Wanglaise completed her bachelor’s degree in Poitiers—their connection never weakened. During the lockdown, their conversations became more personal. In August 2020, Ruben finally confessed his feelings, accompanied by a letter and songs he had composed for Wanglaise.">Malgré les séparations et la distance – Ruben part en Haïti, puis s’installe à Metz pour son doctorat, tandis que Wanglaise termine sa licence à Poitiers – leur lien ne faiblit pas. Pendant le confinement, leurs échanges se font plus intimes. En août 2020, Ruben dévoile enfin ses sentiments, avec une lettre et des chansons qu’il compose pour Wanglaise.</p>
+                        <p data-fr="Les années passent et l’amour s’affermit. En 2022, Ruben demande la main de Wanglaise. Leurs fiançailles sont célébrées en 2024. Enfin, le 19 juillet 2025, ils scelleront leur union devant Dieu, l’État, leurs familles et leurs amis, prêts à écrire un nouveau chapitre de leur histoire." data-en="The years passed, and their love only deepened. In 2022, Ruben asked for Wanglaise’s hand in marriage. They celebrated their engagement in 2024. Finally, on July 19, 2025, they will seal their union before God, the state, their families, and their friends, ready to write a new chapter in their shared journey.">Les années passent et l’amour s’affermit. En 2022, Ruben demande la main de Wanglaise. Leurs fiançailles sont célébrées en 2024. Enfin, le 19 juillet 2025, ils scelleront leur union devant Dieu, l’État, leurs familles et leurs amis, prêts à écrire un nouveau chapitre de leur histoire.</p>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="glass-card rounded-2xl p-2">
+                        <img src="photos/HAITI_Cherie.jpg" alt="Proposal" class="rounded-xl shadow-2xl w-full h-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bible Verse Section -->
+    <section class="verse-bg py-20 text-white text-center px-4 relative">
+        <div class="container mx-auto relative z-10">
+            <blockquote class="font-heading text-3xl md:text-4xl italic mb-6 animate-slide-up" data-fr="« Ce que Dieu a uni, que l'homme ne le sépare pas. »" data-en="« Therefore what God has joined together, let no one separate. »">« Ce que Dieu a uni, que l'homme ne le sépare pas. »</blockquote>
+            <p class="text-2xl font-semibold" data-fr="Marc 10:9" data-en="Mark 10:9">Marc 10:9</p>
+        </div>
+    </section>
+
+    <!-- Wedding Details Section -->
+    <section id="details" class="py-20 px-4 bg-gradient-to-br from-white via-rose to-secondary">
+        <div class="container mx-auto">
+            <h2 class="font-heading text-4xl md:text-5xl text-center mb-16 text-primary animate-slide-up" data-fr="Détails du Mariage" data-en="Wedding Details">Détails du Mariage</h2>
+            
+            <div class="flex flex-wrap -mx-4 mb-12">
+                <div class="w-full md:w-1/2 px-4 mb-8 md:mb-0 animate-slide-up">
+                    <div class="glass-card p-8 rounded-2xl shadow-2xl h-full hover:shadow-3xl transition-all duration-500">
+                        <h3 class="font-heading text-3xl mb-6 text-center text-accent" data-fr="Cérémonie" data-en="Ceremony">Cérémonie</h3>
+                        <div class="text-center mb-6">
+                            <i class="fas fa-church text-5xl text-gold mb-4 animate-float"></i>
+                        </div>
+                        <p class="text-center font-bold text-xl mb-3" data-fr="Église La Foi Apostolique" data-en="Église La Foi Apostolique">Église La Foi Apostolique</p>
+                        <p class="text-center mb-4 text-lg" data-fr="32 Narrow Road, Cole Bay" data-en="32 Narrow Road, Cole Bay, St. Maarten"> 32 Narrow Road, Cole Bay, St. Maarten</p>
+                        <p class="text-center mb-4 text-lg font-semibold" data-fr="19 Juillet 2025 à 15h00" data-en="July 19, 2025 at 3:00 PM">19 Juillet 2025 à 15h00</p>
+                        <p class="text-center text-accent font-medium" data-fr="Tenue semi-formelle demandée" data-en="Semi-formal attire requested">Tenue semi-formelle demandée</p>
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-1/2 px-4 animate-slide-up">
+                    <div class="glass-card p-8 rounded-2xl shadow-2xl h-full hover:shadow-3xl transition-all duration-500">
+                        <h3 class="font-heading text-3xl mb-6 text-center text-accent" data-fr="Réception" data-en="Reception">Réception</h3>
+                        <div class="text-center mb-6">
+                            <i class="fas fa-glass-cheers text-5xl text-gold mb-4 animate-float" style="animation-delay: 0.5s;"></i>
+                        </div>
+                        <p class="text-center font-bold text-xl mb-3" data-fr="The bridge restaurant" data-en="The bridge restaurant">The bridge restaurant</p>
+                        <p class="text-center mb-4 text-lg" data-fr="Sandy ground, avant le pont" data-en="Sandy ground, before the bridge">Sandy ground, avant le pont</p>
+                        <p class="text-center mb-4 text-lg font-semibold" data-fr="19 Juillet 2025 à 19h00" data-en="July 19, 2025 at 19:00 PM">19 Juillet 2025 à 19h00</p>
+                        <p class="text-center text-accent font-medium" data-fr="Dîner, danse et célébration joyeuse" data-en="Dinner, dancing, and joyful celebration">Dîner, danse et célébration joyeuse</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 px-4 bg-gradient-to-br from-secondary via-white to-rose">
+        <div class="container mx-auto">
+            <h2 class="font-heading text-4xl md:text-5xl text-center mb-16 text-primary animate-slide-up" data-fr="Notre Galerie" data-en="Our Gallery">Notre Galerie</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                <div class="gallery-item rounded-2xl shadow-xl">
+                    <img src="photos/RW-logo.png" 
+                         alt="Engagement photo" 
+                         class="w-full h-80 object-cover rounded-2xl">
+                </div>
+                
+                <div class="gallery-item rounded-2xl shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Couple hiking" 
+                         class="w-full h-80 object-cover rounded-2xl">
+                </div>
+                
+                <div class="gallery-item rounded-2xl shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Proposal moment" 
+                         class="w-full h-80 object-cover rounded-2xl">
+                </div>
+                
+                <div class="gallery-item rounded-2xl shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Bible study" 
+                         class="w-full h-80 object-cover rounded-2xl">
+                </div>
+                
+                <div class="gallery-item rounded-2xl shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" 
+                         alt="Church visit" 
+                         class="w-full h-80 object-cover rounded-2xl">
+                </div>
+                
+                <div class="gallery-item rounded-2xl shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Praying together" 
+                         class="w-full h-80 object-cover rounded-2xl">
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="btn-primary text-white px-10 py-4 rounded-full font-semibold text-lg" data-fr="Voir Plus de Photos" data-en="View More Photos">Voir Plus de Photos</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- RSVP Section -->
+    <section id="Rendez-vous" class="py-20 px-4 bg-gradient-to-br from-white via-secondary to-rose">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="font-heading text-4xl md:text-5xl text-center mb-16 text-primary animate-slide-up" data-fr="Rendez-vous" data-en="Appointement">Rendez-vous</h2>
+            
+            <div class="glass-card p-10 rounded-3xl shadow-2xl">
+                <form id="rsvpForm" action="https://formspree.io/f/xdkzrjrp" method="POST" class="space-y-6">
+                    <!-- Formspree Configuration -->
+                    <input type="hidden" name="_next" value="/thanks.html">
+                    <input type="hidden" name="_subject" value="Nouveau RSVP pour le mariage de Ruben & Wanglaise">
+                    <input type="text" name="_gotcha" style="display:none">
+                    
+                    <!-- Name Field -->
+                    <div>
+                        <label for="name" class="block mb-3 font-bold text-lg text-primary" data-fr="Votre Nom(s)" data-en="Your Name(s)">Votre Nom(s)</label>
+                        <input type="text" id="name" name="name" required class="form-input w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:outline-none bg-white/50 backdrop-blur-sm text-lg">
+                    </div>
+                    
+                    <!-- Email Field -->
+                    <div>
+                        <label for="email" class="block mb-3 font-bold text-lg text-primary" data-fr="Adresse Email" data-en="Email Address">Adresse Email</label>
+                        <input type="email" id="email" name="email" required class="form-input w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:outline-none bg-white/50 backdrop-blur-sm text-lg">
+                    </div>
+                    
+                    <!-- Guests Field -->
+                    <div>
+                        <label for="guests" class="block mb-3 font-bold text-lg text-primary" data-fr="Nombre d'Invités" data-en="Number of Guests">Nombre d'Invités</label>
+                        <select id="guests" name="guests" required class="form-input w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:outline-none bg-white/50 backdrop-blur-sm text-lg">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5+">5+</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Attendance Field -->
+                    <div>
+                        <p class="block mb-3 font-bold text-lg text-primary" data-fr="Serez-vous présent(e) ?" data-en="Will you be attending?">Serez-vous présent(e) ?</p>
+                        <div class="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-6">
+                            <label class="inline-flex items-center glass-card px-4 py-3 rounded-xl cursor-pointer hover:bg-accent/20 transition">
+                                <input type="radio" name="attending" value="Oui, j'accepte avec joie" class="text-accent focus:ring-accent w-5 h-5" checked>
+                                <span class="ml-3 text-lg font-medium" data-fr="J'accepte avec joie" data-en="Joyfully Accept">J'accepte avec joie</span>
+                            </label>
+                            <label class="inline-flex items-center glass-card px-4 py-3 rounded-xl cursor-pointer hover:bg-accent/20 transition">
+                                <input type="radio" name="attending" value="Non, je décline à regret" class="text-accent focus:ring-accent w-5 h-5">
+                                <span class="ml-3 text-lg font-medium" data-fr="Je décline à regret" data-en="Regretfully Decline">Je décline à regret</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Message Field -->
+                    <div>
+                        <label for="message" class="block mb-3 font-bold text-lg text-primary" data-fr="Message pour le Couple (Optionnel)" data-en="Message for the Couple (Optional)">Message pour le Couple (Optionnel)</label>
+                        <textarea id="message" name="message" rows="4" class="form-input w-full px-6 py-4 rounded-xl border-2 border-gray-200 focus:outline-none bg-white/50 backdrop-blur-sm text-lg resize-none"></textarea>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="text-center pt-4">
+                        <button type="submit" class="btn-primary text-white px-12 py-4 rounded-full text-lg font-bold transform hover:scale-105 transition-all duration-300" data-fr="Envoyer RSVP" data-en="Submit RSVP">
+                            Envoyer Rendez-vous
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Success Message -->
+                <div id="successMessage" class="hidden text-center mt-8 p-6 bg-green-100 rounded-xl border-2 border-green-300">
+                    <i class="fas fa-check-circle text-green-500 text-3xl mb-3"></i>
+                    <h3 class="text-xl font-bold text-green-700 mb-2" data-fr="Merci !" data-en="Thank You!">Merci !</h3>
+                    <p class="text-green-600" data-fr="Votre RSVP a été envoyé avec succès. Nous avons hâte de célébrer avec vous !" data-en="Your RSVP has been sent successfully. We can't wait to celebrate with you!">Votre RSVP a été envoyé avec succès. Nous avons hâte de célébrer avec vous !</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-primary via-accent to-primary text-white py-16 px-4">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <div class="flex justify-center items-center space-x-4 mb-6">
+                    <img src="photos/RW-logo.png" alt="RW Logo" class="h-16 w-16 object-contain">
+                    <h2 class="font-script text-5xl animate-float"> Cabinet de Psychologie SMH</h2>
+                </div>
+                <p class="text-2xl font-semibold" data-fr="24 Avenue Potié, 38400 Saint-Martin d'Hères, Bureau NOEL JEAN" data-en="24 Avenue Potié, 38400 Saint-Martin d'Hères, Bureau NOEL JEAN">24 Avenue Potié, 38400 Saint-Martin d'Hères,Bureau NOEL JEAN </p>
+            </div>
+            
+            <div class="flex justify-center space-x-8 mb-12">
+                <a href="#" class="text-white hover:text-gold text-3xl transition-all duration-300 transform hover:scale-110">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#" class="text-white hover:text-gold text-3xl transition-all duration-300 transform hover:scale-110">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-white hover:text-gold text-3xl transition-all duration-300 transform hover:scale-110">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            
+            <div class="text-center">
+                <p class="text-lg mb-4 font-medium" data-fr="« Psychologie clinique,Victimologie,Psychocriminologie » data-en="« Clinical Psychology, Victimology, Psychocriminology » >« Psychologie clinique, Victimologie, Psychocriminologie »</p>
+                <p class="text-sm opacity-75" data-fr="© 2025 Cabinet de Psychologie SMH. Tous droits réservés." data-en="© 2025 Cabinet de Psychologie SMH. All rights reserved.">© 2025 Cabinet de Psychologie SMH. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Current language
+        let currentLang = 'fr';
+        
+        // Language switching
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Update language buttons
+            document.getElementById('lang-fr').className = lang === 'fr' ? 
+                'px-3 py-1 rounded-full bg-primary text-white text-sm' : 
+                'px-3 py-1 rounded-full text-primary text-sm';
+            document.getElementById('lang-en').className = lang === 'en' ? 
+                'px-3 py-1 rounded-full bg-primary text-white text-sm' : 
+                'px-3 py-1 rounded-full text-primary text-sm';
+            
+            // Update all text elements
+            const elements = document.querySelectorAll('[data-fr]');
+            elements.forEach(element => {
+                const text = element.getAttribute(`data-${lang}`);
+                if (text) {
+                    element.textContent = text;
+                }
+            });
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+        }
+        
+        // Countdown Timer
+        function updateCountdown() {
+            const weddingDate = new Date('2025-07-19T15:00:00').getTime();
+            const now = new Date().getTime();
+            const timeLeft = weddingDate - now;
+            
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            } else {
+                document.getElementById('days').textContent = '0';
+                document.getElementById('hours').textContent = '0';
+                document.getElementById('minutes').textContent = '0';
+                document.getElementById('seconds').textContent = '0';
+            }
+        }
+        
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+        
+        // Close mobile menu when clicking a link
+        const mobileMenuLinks = document.querySelectorAll('#mobileMenu a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
+        
+        // Form submission and reset
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            
+            // Submit to Formspree
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    // Show success message
+                    document.getElementById('successMessage').classList.remove('hidden');
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        document.getElementById('successMessage').classList.add('hidden');
+                    }, 5000);
+                    
+                    // Scroll to success message
+                    document.getElementById('successMessage').scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                    });
+                } else {
+                    alert(currentLang === 'fr' ? 
+                        'Erreur lors de l\'envoi. Veuillez réessayer.' : 
+                        'Error sending message. Please try again.');
+                }
+            }).catch(error => {
+                alert(currentLang === 'fr' ? 
+                    'Erreur lors de l\'envoi. Veuillez réessayer.' : 
+                    'Error sending message. Please try again.');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all elements with slide-up animation
+        document.querySelectorAll('.animate-slide-up').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set default language
+            switchLanguage('fr');
+            
+            // Add loading animation
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 1s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
